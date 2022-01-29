@@ -5,11 +5,14 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "rootDir": "src",
     "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["*"]
     },
     "allowJs": false,
-    "esModuleInterop": false,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,

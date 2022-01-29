@@ -2,7 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  node: 'development',
+  mode: 'development',
   entry: './src/main/index.tsx',
   output: {
     path: path.join(__dirname, 'public/js'),
@@ -35,9 +35,14 @@ module.exports = {
     }],
   },
   devServer: {
-    contentBase: './public',
-    writeToDisk: true,
+    devMiddleware: {
+      writeToDisk: true,
+    },
+    static: {
+      directory: './public',
+    },
     historyApiFallback: true,
+    port: 8080,
   },
   externals: {
     react: 'React',
