@@ -1,4 +1,5 @@
 import { RenderResult, render } from '@testing-library/react';
+import { Helper } from '@/presentation/test';
 import SignUp from './signup';
 
 type SutTypes = {
@@ -14,31 +15,15 @@ const makeSut = (): SutTypes => {
   };
 };
 
-const testChildCount = (sut: RenderResult, fieldName: string, count: number): void => {
-  const el = sut.getByTestId(fieldName);
-  expect(el.childElementCount).toBe(count);
-};
-
-const testButtonIsDisabled = (sut: RenderResult, fieldName: string, isDisabled: boolean): void => {
-  const button = sut.getByTestId(fieldName) as HTMLButtonElement;
-  expect(button.disabled).toBe(isDisabled);
-};
-
-const testStatusForFiled = (sut: RenderResult, fieldName: string, validationError?: string): void => {
-  const fieldStatus = sut.getByTestId(`${fieldName}-status`);
-  expect(fieldStatus.title).toBe(validationError || 'Tudo certo!');
-  expect(fieldStatus.textContent).toBe(validationError ? '🔴' : '🟢');
-};
-
 describe('Signup Component', () => {
   test('should start with initial state', () => {
     const validationError = 'Campo obrigatório';
     const { sut } = makeSut();
-    testChildCount(sut, 'error-wrap', 0);
-    testButtonIsDisabled(sut, 'submit', true);
-    testStatusForFiled(sut, 'name', validationError);
-    testStatusForFiled(sut, 'email', validationError);
-    testStatusForFiled(sut, 'password', validationError);
-    testStatusForFiled(sut, 'passwordConfirmation', validationError);
+    Helper.testChildCount(sut, 'error-wrap', 0);
+    Helper.testButtonIsDisabled(sut, 'submit', true);
+    Helper.testStatusForFiled(sut, 'name', validationError);
+    Helper.testStatusForFiled(sut, 'email', validationError);
+    Helper.testStatusForFiled(sut, 'password', validationError);
+    Helper.testStatusForFiled(sut, 'passwordConfirmation', validationError);
   });
 });
